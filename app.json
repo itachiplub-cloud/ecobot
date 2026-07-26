@@ -1,0 +1,88 @@
+{
+  "name": "Telegram Economy RPG Bot",
+  "description": "Production-ready Telegram Economy RPG Bot with virtual stock market, RPG combat, and full admin panel",
+  "repository": "https://github.com/itachiplub-cloud/ecobot",
+  "keywords": ["telegram", "bot", "rpg", "economy", "stock-market", "pyrogram"],
+  "stack": "container",
+  "env": [
+    {
+      "description": "Telegram API ID from https://my.telegram.org",
+      "key": "API_ID",
+      "type": "text",
+      "required": true
+    },
+    {
+      "description": "Telegram API Hash from https://my.telegram.org",
+      "key": "API_HASH",
+      "type": "text",
+      "required": true
+    },
+    {
+      "description": "Bot token from @BotFather",
+      "key": "BOT_TOKEN",
+      "type": "text",
+      "required": true
+    },
+    {
+      "description": "Your Telegram user ID (only you will be owner)",
+      "key": "OWNER_ID",
+      "type": "text",
+      "required": true
+    },
+    {
+      "description": "MongoDB connection URI (use Heroku MongoDB addon)",
+      "key": "MONGO_URI",
+      "type": "text",
+      "required": true,
+      "value": ""
+    },
+    {
+      "description": "MongoDB database name",
+      "key": "MONGO_DB_NAME",
+      "type": "text",
+      "required": true,
+      "value": "economy_rpg_bot"
+    },
+    {
+      "description": "Default starting balance",
+      "key": "DEFAULT_BALANCE",
+      "type": "text",
+      "value": "500"
+    },
+    {
+      "description": "Tax rate (0.05 = 5%)",
+      "key": "TAX_RATE",
+      "type": "text",
+      "value": "0.05"
+    },
+    {
+      "description": "Bank interest rate (0.02 = 2%)",
+      "key": "BANK_INTEREST_RATE",
+      "type": "text",
+      "value": "0.02"
+    },
+    {
+      "description": "Daily reward amount",
+      "key": "DAILY_REWARD",
+      "type": "text",
+      "value": "100"
+    },
+    {
+      "description": "Log level (DEBUG, INFO, WARNING, ERROR)",
+      "key": "LOG_LEVEL",
+      "type": "text",
+      "value": "INFO"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongodb"
+    }
+  ]
+}

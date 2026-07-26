@@ -1,0 +1,812 @@
+# ==========================================
+# TELEGRAM ECONOMY RPG BOT - ENGLISH LOCALE
+# ==========================================
+
+bot:
+  name: "Telegram Economy RPG"
+  version: "1.0.0"
+
+# ---- START MESSAGES ----
+start:
+  private: |
+    ⚔️ **Welcome to Telegram Economy RPG!**
+
+    👤 Hello, {user}!
+    
+    🌟 Your adventure awaits. Build your empire, fight bosses, collect pets, and dominate the leaderboards!
+    
+    💰 Balance: {balance}
+    ⭐ Level: {level}
+
+  group: |
+    👋 **Hello {group_name}!**
+    
+    I am an Economy RPG Bot. Use /help to see all commands.
+    
+    👤 Owner: {owner}
+    👥 Players: {player_count}
+    
+    **Features:**
+    💰 Economy | ⚔️ RPG | 🎮 Games
+    🐾 Pets | 🏰 Clans | 📋 Quests
+    🏆 Leaderboards | 🎉 Events
+
+# ---- BUTTONS ----
+btn:
+  profile: "👤 Profile"
+  help: "❓ Help"
+  economy: "💰 Economy"
+  rpg: "⚔️ RPG"
+  inventory: "🎒 Inventory"
+  shop: "🛒 Shop"
+  games: "🎮 Games"
+  quests: "📋 Quests"
+  pets: "🐾 Pets"
+  clans: "🏰 Clans"
+  market: "📊 Market"
+  leaderboard: "🏆 Leaderboard"
+  settings: "⚙️ Settings"
+  updates: "📢 Updates"
+  back: "◀️ Back"
+  close: "✖️ Close"
+  balance: "💰 Balance"
+  deposit: "🏦 Deposit"
+  withdraw: "💳 Withdraw"
+  transfer: "💸 Transfer"
+  bank_info: "📊 Bank Info"
+  loans: "📄 Loans"
+  transactions: "📜 Transactions"
+  work: "💼 Work"
+  job_list: "📋 Jobs"
+  beg: "🙏 Beg"
+  steal: "🕵️ Steal"
+  rob: "🔫 Rob"
+  heist: "💥 Heist"
+  hack: "💻 Hack"
+  coinflip: "🪙 Coin Flip"
+  slots: "🎰 Slots"
+  blackjack: "🃏 Blackjack"
+  roulette: "🎡 Roulette"
+  dice_game: "🎲 Dice"
+  wheel: "🎡 Wheel"
+  mines: "💣 Mines"
+  crash: "📈 Crash"
+  stats: "📊 Stats"
+  equipment: "⚔️ Equipment"
+  dungeon: "🏰 Dungeon"
+  boss: "🐉 Boss"
+  pvp: "⚔️ PvP"
+  fish: "🐟 Fish"
+  mine: "⛏️ Mine"
+  achievements: "🏅 Achievements"
+  battlepass: "🎫 Battle Pass"
+  shop_permanent: "🏪 Permanent Shop"
+  shop_daily: "📅 Daily Shop"
+  shop_weekly: "📆 Weekly Shop"
+  shop_premium: "👑 Premium Shop"
+  clan_create: "➕ Create Clan"
+  clan_info: "📊 Clan Info"
+  clan_members: "👥 Members"
+  clan_war: "⚔️ Clan War"
+  clan_shop: "🛒 Clan Shop"
+  market_browse: "🔍 Browse"
+  market_sell: "💰 Sell"
+  market_auctions: "🔨 Auctions"
+  market_my_listings: "📋 My Listings"
+  pet_list: "📋 Pet List"
+  pet_equip: "🐾 Equip Pet"
+  pet_feed: "🍖 Feed Pet"
+  pet_play: "🎾 Play"
+  pet_evolve: "✨ Evolve"
+  language: "🌐 Language"
+  notifications: "🔔 Notifications"
+  private_profile: "🔒 Private Profile"
+  admin_broadcast: "📢 Broadcast"
+  admin_economy: "💰 Economy Control"
+  admin_users: "👥 User Management"
+  admin_premium: "👑 Premium Control"
+  admin_settings: "⚙️ Settings"
+  admin_logs: "📜 Logs"
+  confirm_yes: "✅ Yes"
+  confirm_no: "❌ No"
+  prev: "◀️"
+  next: "▶️"
+
+# ---- ECONOMY ----
+economy:
+  wallet: "Wallet"
+  bank: "Bank"
+  total: "Total"
+  balance_title: "💰 **Your Balance**"
+  deposit_prompt: "Enter amount to deposit:"
+  deposit_success: "✅ Deposited {amount} coins"
+  deposit_failed: "❌ Insufficient funds"
+  withdraw_prompt: "Enter amount to withdraw:"
+  withdraw_success: "✅ Withdrew {amount} coins"
+  withdraw_failed: "❌ Insufficient bank balance"
+  transfer_prompt: "Reply with user and amount: @user amount"
+  transfer_success: "✅ Transferred {amount} to {user}"
+  transfer_failed: "❌ Transfer failed"
+  tax_applied: "📋 Tax applied: {amount} coins"
+
+# ---- WORK ----
+work:
+  title: "💼 **Work**"
+  success: "✅ You worked as a {job} and earned {amount} coins!"
+  failed: "❌ You got fired! Better luck next time."
+  no_job: "❌ You don't have a job. Check /work for available jobs."
+  job_assigned: "✅ You are now working as a {job}!"
+  already_working: "❌ You already have a job."
+  cooldown: "⏳ You need to rest for {time}"
+  jobs:
+    police: "👮 Police Officer"
+    doctor: "👨‍⚕️ Doctor"
+    programmer: "💻 Programmer"
+    chef: "👨‍🍳 Chef"
+    pilot: "✈️ Pilot"
+    teacher: "👨‍🏫 Teacher"
+    businessman: "💼 Businessman"
+    streamer: "📹 Streamer"
+    developer: "🔧 Developer"
+
+# ---- CRIME ----
+crime:
+  title: "🚨 **Crime**"
+  beg_success: "🙏 Someone gave you {amount} coins!"
+  beg_failed: "🙏 Nobody wanted to help."
+  steal_success: "🕵️ You stole {amount} coins!"
+  steal_failed: "🕵️ You got caught stealing!"
+  rob_success: "🔫 You robbed {user} for {amount} coins!"
+  rob_failed: "🔫 You failed to rob {user}!"
+  heist_success: "💥 HEIST SUCCESSFUL! You stole {amount} coins!"
+  heist_failed: "💥 The heist failed! You lost {amount} coins."
+  heist_jailed: "🚔 You got caught during the heist and sent to jail!"
+  hack_success: "💻 You hacked {user} and stole {amount} coins!"
+  hack_failed: "💻 Hack failed! You got traced!"
+  jail_message: "🚔 You're in jail for {time}! Use /jail to see options."
+  jail_free: "✅ You paid {amount} coins to get out of jail."
+  jail_already: "❌ You're already in jail!"
+  escape_success: "🏃 You escaped jail!"
+  escape_failed: "🏃 Escape attempt failed!"
+
+# ---- GAMES ----
+games:
+  coinflip_title: "🪙 **Coin Flip**"
+  coinflip_prompt: "Choose Heads or Tails:"
+  coinflip_won: "🎉 {result}! You won {amount} coins!"
+  coinflip_lost: "😔 {result}! You lost {amount} coins."
+  slots_title: "🎰 **Slots**"
+  slots_spin: "🎰 Spinning..."
+  slots_jackpot: "🎉🎉🎉 JACKPOT! You won {amount} coins!"
+  slots_win: "🎉 You won {amount} coins!"
+  slots_lose: "😔 No match. You lost {amount} coins."
+  blackjack_title: "🃏 **Blackjack**"
+  blackjack_prompt: "Hit or Stand?"
+  blackjack_win: "🎉 You won {amount} coins!"
+  blackjack_lose: "😔 You lost {amount} coins."
+  blackjack_push: "🤝 Push! Your bet is returned."
+  roulette_title: "🎡 **Roulette**"
+  roulette_prompt: "Bet on: Red/Black/Green or a number"
+  roulette_won: "🎉 Won {amount} coins on {bet}!"
+  roulette_lose: "😔 Lost {amount} coins."
+  dice_title: "🎲 **Dice**"
+  dice_result: "🎲 You rolled {roll}! Bet: {bet_amount}"
+  dice_won: "🎉 You won {amount}!"
+  dice_lost: "😔 You lost {amount}."
+  crash_title: "📈 **Crash**"
+  crash_multiplier: "📈 Current multiplier: {multiplier}x"
+  crash_cashout: "✅ Cashed out at {multiplier}x for {amount} coins!"
+  crash_busted: "💥 CRASHED at {multiplier}x! You lost {amount} coins."
+
+# ---- RPG ----
+rpg:
+  title: "⚔️ **RPG**"
+  level_up: "🎉 Level Up! You are now level {level}!"
+  xp_gained: "📊 +{amount} XP"
+  stats_title: "📊 **Your Stats**"
+  equipment_title: "⚔️ **Equipment**"
+  no_equipped: "❌ No items equipped."
+  equip_success: "✅ Equipped {item}!"
+  unequip_success: "✅ Unequipped {item}!"
+  dungeon_title: "🏰 **Dungeon**"
+  dungeon_start: "Entering dungeon..."
+  dungeon_clear: "🎉 Dungeon cleared! Rewards: {coins} coins, {xp} XP"
+  dungeon_fail: "💀 Defeated in the dungeon..."
+  boss_title: "🐉 **Boss Fight**"
+  boss_challenge: "Challenging boss..."
+  boss_win: "🎉 Defeated {boss}! Rewards: {coins} coins, {xp} XP"
+  boss_lose: "💀 {boss} defeated you..."
+  pvp_title: "⚔️ **PvP**"
+  pvp_win: "🎉 You defeated {opponent}!"
+  pvp_lose: "💀 {opponent} defeated you..."
+  pvp_draw: "🤝 It's a draw!"
+  fish_title: "🐟 **Fishing**"
+  fish_caught: "🐟 You caught a {item}!"
+  fish_empty: "🐟 Nothing biting..."
+  mine_title: "⛏️ **Mining**"
+  mine_found: "⛏️ You mined {item}!"
+  mine_empty: "⛏️ No minerals found..."
+
+# ---- SHOP ----
+shop:
+  title: "🛒 **Shop**"
+  price: "Price"
+  stock: "Stock"
+  buy_success: "✅ Bought {item} for {amount} coins!"
+  buy_failed: "❌ Purchase failed."
+  buy_no_stock: "❌ Out of stock."
+  buy_no_money: "❌ Not enough coins."
+  sell_success: "✅ Sold {item} for {amount} coins!"
+  sell_failed: "❌ Cannot sell this item."
+  not_buyable: "❌ This item cannot be bought."
+  featured: "⭐ Featured Items"
+  daily_reset: "📅 Resets in: {time}"
+
+# ---- QUESTS ----
+quest:
+  title: "📋 **Quests**"
+  assigned: "📋 New quest: {title}"
+  completed: "🎉 Quest completed: {title}"
+  claimed: "🎁 Reward claimed: {coins} coins, {xp} XP"
+  no_quests: "❌ No active quests. Check back later!"
+  expired: "⏰ Quest expired: {title}"
+  all_complete: "🎉 All quests completed!"
+  daily_refresh: "📅 Daily quests refresh in: {time}"
+  reward: "Reward"
+
+# ---- PETS ----
+pet:
+  title: "🐾 **Pets**"
+  list: "📋 Your Pets"
+  equipped: "🐾 Equipped: {name}"
+  none: "❌ You don't have any pets."
+  feed_success: "🍖 Fed {name}! Hunger: {hunger}"
+  play_success: "🎾 Played with {name}! Happiness: {happiness}"
+  level_up: "🎉 {name} leveled up to {level}!"
+  evolve_success: "✨ {name} evolved to stage {stage}!"
+  evolve_max: "❌ Already at max evolution."
+  equip_success: "✅ Equipped {name}!"
+  remove_success: "❌ Released {name}."
+  not_found: "❌ Pet not found."
+
+# ---- CLANS ----
+guild:
+  title: "🏰 **Clans**"
+  level: "Level"
+  members: "Members"
+  treasury: "Treasury"
+  wars: "Wars"
+  create_success: "✅ Clan {name} created!"
+  create_failed: "❌ Failed to create clan."
+  already_in: "❌ You're already in a clan."
+  not_in: "❌ You're not in a clan."
+  join_success: "✅ Joined {name}!"
+  join_failed: "❌ Cannot join clan."
+  leave_success: "✅ Left the clan."
+  leave_owner: "❌ Owners can't leave. Disband instead."
+  disband_success: "✅ Clan disbanded."
+  deposit_success: "✅ Deposited {amount} coins to treasury."
+
+# ---- MARKET ----
+market:
+  title: "📊 **Market**"
+  browse: "🔍 Browse Listings"
+  sell: "💰 Sell Item"
+  list_success: "✅ Listed {item} for {price} coins!"
+  list_failed: "❌ Failed to list."
+  buy_success: "✅ Bought {item} for {price} coins!"
+  buy_failed: "❌ Purchase failed."
+  no_listings: "❌ No listings found."
+  auction_bid: "🔨 Placed bid: {amount} coins!"
+  auction_buyout: "🔨 Bought out auction for {amount} coins!"
+
+# ---- LEADERBOARD ----
+leaderboard:
+  title: "🏆 **Leaderboard**"
+  richest: "💰 Richest"
+  highest_level: "⭐ Highest Level"
+  most_xp: "📊 Most XP"
+  most_wins: "⚔️ Most Wins"
+  top_clan: "🏰 Top Clan"
+  top_pet: "🐾 Top Pet"
+  rank: "Your rank: #{rank}"
+
+# ---- PROFILE ----
+profile:
+  title: "👤 **Profile**"
+  user: "User"
+  level: "Level"
+  xp: "XP"
+  title_label: "Title"
+  guild: "Clan"
+  joined: "Joined"
+  no_user: "❌ User not found."
+
+# ---- STATS ----
+stats:
+  strength: "STR"
+  defense: "DEF"
+  luck: "LCK"
+  speed: "SPD"
+  critical: "CRT"
+
+# ---- ACHIEVEMENTS ----
+achievement:
+  title: "🏅 **Achievements**"
+  unlocked: "🎉 Achievement unlocked: {name}"
+  already: "❌ Already unlocked."
+  reward_claimed: "🎁 Reward claimed: {amount} coins"
+  progress: "Progress: {current}/{max}"
+  completed: "✅"
+  incomplete: "⏳"
+
+# ---- BANK ----
+bank:
+  title: "🏦 **Bank**"
+  balance: "Balance: {amount}"
+  interest_applied: "📈 Interest applied: +{amount} coins"
+  loan_taken: "📄 Loan of {amount} taken. Due: {date}"
+  loan_repay: "✅ Repaid {amount} coins."
+  loan_failed: "❌ Cannot take loan."
+  loan_exists: "❌ You already have an active loan."
+
+# ---- DAILY ----
+daily:
+  title: "📅 **Daily Rewards**"
+  claimed: "✅ Claimed {amount} coins! Streak: {streak}"
+  streak_bonus: "🔥 Streak bonus: +{bonus} coins"
+  already_claimed: "❌ Already claimed. Come back in {time}"
+  weekly_claimed: "✅ Weekly reward: {amount} coins!"
+  monthly_claimed: "✅ Monthly reward: {amount} coins!"
+  yearly_claimed: "✅ Yearly reward: {amount} coins!"
+
+# ---- ADMIN ----
+admin:
+  title: "⚙️ **Admin Panel**"
+  broadcast_prompt: "📢 Send the broadcast message:"
+  broadcast_sent: "✅ Broadcast sent to {count} users."
+  economy_reset: "💰 Economy reset."
+  user_banned: "🚫 User {user} banned."
+  user_unbanned: "✅ User {user} unbanned."
+  premium_set: "👑 Premium granted to {user}."
+  premium_removed: "👑 Premium removed from {user}."
+  maintenance_on: "🔧 Maintenance mode ON."
+  maintenance_off: "🔧 Maintenance mode OFF."
+  no_permission: "❌ You don't have permission."
+
+# ---- OWNER ----
+owner:
+  sudo_added: "✅ Sudo admin {user} added."
+  sudo_removed: "✅ Sudo admin {user} removed."
+  sudo_list: "👥 **Sudo Admins:**\n{list}"
+  no_sudo: "❌ No sudo admins."
+  invalid_id: "❌ Invalid user ID."
+
+# ---- ERRORS ----
+error:
+  general: "❌ An error occurred."
+  not_found: "❌ Not found."
+  insufficient_funds: "❌ Insufficient funds."
+  cooldown: "⏳ Cooldown: {time}"
+  maintenance: "🔧 Bot is under maintenance."
+  banned: "🚫 You are banned."
+  permission_denied: "❌ You are not authorized."
+  invalid_input: "❌ Invalid input."
+  db_error: "❌ Database error."
+  try_again: "❌ Try again later."
+
+# ---- COOLDOWN ----
+cooldown:
+  active: "⏳ Cooldown active. Wait {time}"
+  work: "💼 Work cooldown: {time}"
+  crime: "🚨 Crime cooldown: {time}"
+  game: "🎮 Game cooldown: {time}"
+
+# ---- MAINTENANCE ----
+maintenance:
+  enabled: "🔧 Bot is under maintenance. Please try again later."
+
+# ---- HELP ----
+help:
+  title: "❓ **Help**"
+  categories: "Select a category:"
+  economy: "💰 **Economy Commands**"
+  rpg: "⚔️ **RPG Commands**"
+  games: "🎮 **Game Commands**"
+  social: "👥 **Social Commands**"
+  misc: "📋 **Misc Commands**"
+  admin: "⚙️ **Admin Commands**"
+  work_cmd: "/work - Work at your job"
+  crime_cmd: "/crime - Crime menu"
+  balance_cmd: "/balance - Check balance"
+  deposit_cmd: "/deposit - Deposit coins"
+  withdraw_cmd: "/withdraw - Withdraw coins"
+  transfer_cmd: "/transfer - Transfer coins"
+  daily_cmd: "/daily - Claim daily reward"
+  shop_cmd: "/shop - Open shop"
+  inventory_cmd: "/inventory - View inventory"
+  profile_cmd: "/profile - View profile"
+  rpg_cmd: "/rpg - RPG menu"
+  quest_cmd: "/quests - View quests"
+  pet_cmd: "/pets - Pet menu"
+  clan_cmd: "/clan - Clan menu"
+  market_cmd: "/market - Market menu"
+  game_cmd: "/games - Game menu"
+  lb_cmd: "/leaderboard - View leaderboards"
+  settings_cmd: "/settings - Bot settings"
+
+# ---- MISC ----
+misc:
+  yes: "Yes"
+  no: "No"
+  loading: "⏳ Loading..."
+  processing: "⚙️ Processing..."
+  success: "✅ Success!"
+  cancelled: "❌ Cancelled."
+  coming_soon: "🔜 Coming soon!"
+  not_enough: "❌ Not enough {resource}."
+  item_not_found: "❌ Item not found."
+  user_not_found: "❌ User not found."
+
+# ---- GAME STATS ----
+game_stats:
+  title: "📊 **Your Game Stats**"
+  games_played: "🎮 Games Played"
+  games_won: "🏆 Games Won"
+  win_rate: "📈 Win Rate"
+  total_earned: "💰 Total Earned"
+  total_lost: "💸 Total Lost"
+  biggest_win: "🎯 Biggest Win"
+  biggest_loss: "💔 Biggest Loss"
+  current_streak: "🔥 Current Win Streak"
+  best_streak: "🏅 Best Win Streak"
+  daily_count: "📅 Today's Games"
+  daily_limit: "Daily Limit"
+  game_disabled: "❌ This game is currently disabled by the admin."
+  invalid_bet_range: "❌ Bet must be between {min} and {max}."
+  bet_limit_reached: "❌ Daily limit reached for this game."
+  xp_earned: "⭐ +{amount} XP"
+  coins_earned: "💰 +{amount} Coins"
+  game_history: "📜 **Recent Games**"
+  no_history: "No games played yet."
+  leaderboards: "🏆 **Game Leaderboards**"
+  by_played: "🎮 Most Played"
+  by_wins: "🏆 Most Wins"
+  by_winrate: "📈 Best Win Rate"
+  by_earners: "💰 Top Earners"
+  by_bettors: "🎰 Biggest Bettors"
+
+# ---- EMOJI GAMES ----
+emoji_games:
+  dart_title: "🎯 **Dart Game**"
+  bowling_title: "🎳 **Bowling**"
+  basketball_title: "🏀 **Basketball**"
+  football_title: "⚽ **Football**"
+  dice_roll_title: "🎲 **Dice Roll**"
+  your_roll: "You rolled: **{score}**"
+  result: "Result: {display}"
+  won: "🎉 You won {amount} coins!"
+  lost: "😔 You lost {amount} coins."
+
+# ---- BETTING GAMES ----
+betting_games:
+  betroll_title: "🎲 **Bet Roll**"
+  betroll_prompt: "Pick a number (2-12):"
+  betroll_result: "🎲 Rolled **{roll}**"
+  highlow_title: "🃏 **High or Low**"
+  highlow_prompt: "Higher or Lower than {value}?"
+  highlow_result: "The card was **{card}**"
+  wheel_title: "🎡 **Wheel of Fortune**"
+  wheel_spinning: "🎡 Spinning..."
+  wheel_result: "🎡 Landed on **{segment}**"
+  treasure_title: "💎 **Treasure Hunt**"
+  treasure_prompt: "Pick a chest (1-5):"
+  treasure_result: "You opened chest {chest} and found {result}!"
+  luckycard_title: "🃏 **Lucky Card**"
+  numberguess_title: "🔢 **Number Guess**"
+  numberguess_prompt: "Guess a number (1-{max}):"
+  numberguess_result: "The number was **{number}**"
+  numberguess_too_high: "📈 Too high!"
+  numberguess_too_low: "📉 Too low!"
+
+# ---- MINES ----
+mines_game:
+  title: "💣 **Mines**"
+  grid: "Select cells to reveal gems. Avoid mines!"
+  gem: "💎"
+  mine: "💣"
+  empty: "⬛"
+  revealed: "Revealed"
+  cashout: "✅ Cash Out ({amount} coins)"
+  bust: "💥 BOOM! You hit a mine!"
+  score: "Gems: {gems} | Multiplier: {mult}x"
+  no_mines_left: "No safe cells left! Auto cashing out..."
+
+# ---- CRASH ----
+crash_game:
+  title: "📈 **Crash**"
+  started: "📈 Round started! Cash out before it crashes!"
+  multiplier: "Current: **{multiplier}x**"
+  cashed_out: "✅ Cashed out at {multiplier}x for {amount} coins!"
+  crashed: "💥 Crashed at {multiplier}x! You lost {amount} coins."
+  waiting: "⏳ Waiting for next round..."
+
+# ---- INVESTMENT ----
+investment:
+  title: "📈 **Investments**"
+  types: "Select an investment type:"
+  savings: "🏦 Savings ({rate}% daily, no lock)"
+  fixed: "🔒 Fixed ({rate}% daily, {lock} day lock)"
+  growth: "📊 Growth ({rate}% daily, may lose)"
+  premium: "👑 Premium ({rate}% daily, {lock} day lock)"
+  invest_prompt: "Enter amount to invest:"
+  invest_success: "✅ Invested {amount} coins in {type}!"
+  invest_failed: "❌ Investment failed."
+  no_funds: "❌ Not enough coins."
+  my_investments: "📋 **Your Investments**"
+  no_investments: "❌ No active investments."
+  withdraw_success: "✅ Withdrew {amount} coins (+{interest} interest)!"
+  withdraw_expired: "✅ Investment matured! Withdrew {amount} coins (+{interest} interest)."
+  withdraw_locked: "❌ Still locked. Unlocks in {time}."
+  interest_earned: "📈 Interest earned: {amount} coins"
+  set_rate: "✅ Interest rate set to {rate}% for {type}."
+  ended: "✅ Investment ended. Returned {amount} coins."
+
+# ---- GAME PASS ----
+gamepass:
+  title: "🎫 **Game Pass**"
+  current_season: "Season {number}"
+  tier: "Tier {tier}"
+  xp_progress: "XP: {current}/{needed}"
+  premium_active: "👑 Premium Pass Active!"
+  upgrade_prompt: "Upgrade to Premium Pass?"
+  upgrade_success: "✅ Premium Pass activated!"
+  upgrade_failed: "❌ Upgrade failed."
+  claim_tier: "🎁 Claim Tier {tier} reward"
+  claimed: "✅ Tier {tier} reward claimed!"
+  daily_missions: "📋 **Daily Missions**"
+  weekly_missions: "📋 **Weekly Missions**"
+  mission_progress: "{mission}: {current}/{needed}"
+  mission_complete: "✅ Complete"
+  free_reward: "🆓 Free"
+  premium_reward: "👑 Premium"
+  no_pass: "❌ No active Game Pass. Check /gamepass"
+
+# ---- AUDIT LOG ----
+audit:
+  title: "📜 **Audit Log**"
+  no_logs: "No audit logs found."
+  entry: "[{time}] {action} by {admin} → {target}"
+  actions:
+    addcoins: "Added {amount} coins"
+    removecoins: "Removed {amount} coins"
+    setcoins: "Set coins to {amount}"
+    ban: "Banned user"
+    unban: "Unbanned user"
+    reset_user: "Reset user economy"
+    delete_user: "Deleted user"
+    recover_user: "Recovered user"
+    purge_user: "Permanently purged user"
+    set_interest: "Set interest rate"
+    game_enable: "Enabled game"
+    game_disable: "Disabled game"
+    set_cooldown: "Set cooldown"
+    set_difficulty: "Set difficulty"
+    set_multiplier: "Set multiplier"
+    set_house_edge: "Set house edge"
+    set_reward: "Set rewards"
+    broadcast: "Broadcast sent"
+    maintenance_on: "Maintenance ON"
+    maintenance_off: "Maintenance OFF"
+    reset_all_economy: "Full economy reset"
+
+# ---- SOFT DELETE ----
+soft_delete:
+  title: "🗑️ **Recycle Bin**"
+  deleted_users: "📋 Deleted Users"
+  no_deleted: "No deleted users."
+  user_entry: "`{user_id}` - {name} (deleted {date})"
+  restore_success: "✅ User {user_id} restored!"
+  restore_failed: "❌ Restore failed."
+  purge_success: "✅ User permanently purged."
+  purge_failed: "❌ User not found."
+  backup_success: "✅ Backup created for user {user_id}."
+  clone_success: "✅ User cloned successfully."
+
+# ---- OWNER PANEL ----
+owner_panel:
+  title: "👑 **Owner Control Panel**"
+  users: "👥 **User Management**"
+  economy: "💰 **Economy Control**"
+  bank: "🏦 **Bank Control**"
+  games: "🎮 **Game Control**"
+  leaderboards: "🏆 **Leaderboards**"
+  stats: "📊 **Statistics**"
+  database: "📂 **Database**"
+  sudo: "🤖 **Sudo Admins**"
+  events: "🎉 **Events**"
+  broadcast: "📢 **Broadcast**"
+  settings: "⚙️ **Settings**"
+  logs: "📜 **Audit Logs**"
+  back_to_main: "◀️ Back to Main"
+  user_search_prompt: "Enter user ID or username:"
+  user_info: "👤 **User Info**\n\n🆔 ID: `{user_id}`\n📛 Name: {name}\n🔗 @{username}\n⭐ Level: {level}\n💰 Balance: {balance}\n🚫 Banned: {banned}"
+  coins_added: "✅ Added {amount} to {user_id}"
+  coins_removed: "✅ Removed {amount} from {user_id}"
+  coins_set: "✅ Set {user_id} wallet to {amount}"
+  user_banned: "✅ User {user_id} banned."
+  user_unbanned: "✅ User {user_id} unbanned."
+  game_config_updated: "✅ {game} config updated."
+  all_configs: "📋 **All Game Configs**"
+  config_entry: "{game}: {enabled} | CD: {cooldown}s | Limit: {limit}/day"
+  db_stats: "📂 **Database Stats**"
+  db_collection: "{name}: {count} docs"
+  sudo_added: "✅ {user_id} added to sudo."
+  sudo_removed: "✅ {user_id} removed from sudo."
+  sudo_list: "🤖 **Sudo Admins:**\n{list}"
+  no_sudo: "No sudo admins."
+  broadcast_prompt: "Send broadcast message:"
+  broadcast_sent: "✅ Broadcast sent to {count} users."
+  maintenance_on: "🔧 Maintenance ON"
+  maintenance_off: "🔧 Maintenance OFF"
+  reload_complete: "✅ Reload complete."
+
+# ---- ENHANCED BANK ----
+enhanced_bank:
+  title: "🏦 **Enhanced Bank**"
+  loan_taken: "📄 Loan of {amount} taken. Due: {date}"
+  loan_repay: "✅ Repaid {amount} coins."
+  loan_failed: "❌ Cannot take loan."
+  loan_exists: "❌ You already have a loan."
+  loan_limit: "❌ Loan limit reached."
+  savings_deposited: "✅ Deposited {amount} to savings ({rate}% daily)"
+  savings_withdrawn: "✅ Withdrew {amount} from savings"
+  interest_applied: "📈 Interest applied: +{amount} coins"
+  high_interest: "📈 High-yield account active!"
+  tax_applied: "📋 Tax: {amount} coins"
+  no_transactions: "No recent transactions."
+  recent_transactions: "📜 **Recent Transactions**"
+
+# ---- CLAN ----
+clan:
+  title: "🏰 **Clans**"
+  create_prompt: "Enter clan name:"
+  create_success: "✅ Clan **{name}** created!"
+  create_failed: "❌ Failed to create clan."
+  already_in: "❌ You're already in a clan."
+  not_in: "❌ You're not in a clan."
+  join_success: "✅ Joined **{name}**!"
+  join_failed: "❌ Cannot join clan."
+  leave_success: "✅ Left the clan."
+  leave_owner: "❌ Owners can't leave. Disband instead."
+  disband_success: "✅ Clan disbanded."
+  deposit_success: "✅ Deposited {amount} coins."
+  info: "🏰 **{name}**\n⭐ Level: {level}\n👥 Members: {members}/{max}\n💰 Treasury: {treasury}"
+  no_clans: "No clans found."
+  member_list: "👥 **Members of {name}**"
+
+# ---- DUNGEON ----
+dungeon:
+  title: "🏰 **Dungeon**"
+  select: "Choose a dungeon:"
+  forest: "🌲 Goblin Forest (Easy)"
+  cave: "🦇 Dark Cave (Normal)"
+  castle: "🏰 Haunted Castle (Hard)"
+  volcano: "🌋 Dragon Volcano (Expert)"
+  abyss: "🕳️ Abyss (Legendary)"
+  enter: "Entering dungeon..."
+  cleared: "🎉 Dungeon cleared! +{coins} coins, +{xp} XP"
+  defeated: "💀 Defeated in the dungeon..."
+  loot_found: "Found: {item}!"
+
+# ---- BOSS ----
+boss:
+  title: "🐉 **Boss Fights**"
+  select: "Choose a boss:"
+  slime: "🟢 Slime King (Easy)"
+  wolf: "🐺 Shadow Wolf (Normal)"
+  dragon: "🐉 Fire Dragon (Hard)"
+  demon: "👿 Demon Lord (Expert)"
+  lich: "💀 Lich King (Legendary)"
+  challenge: "Challenging boss..."
+  victory: "🎉 Defeated {boss}! +{coins} coins, +{xp} XP"
+  defeat: "💀 {boss} defeated you..."
+  turn: "Turn {turn}: You dealt {damage} damage"
+  boss_turn: "{boss} dealt {damage} damage"
+  hp_remaining: "Your HP: {hp}/{max_hp}"
+
+# ---- PVP ----
+pvp:
+  title: "⚔️ **PvP Battle**"
+  searching: "🔍 Searching for opponent..."
+  found: "⚔️ Battle begins!"
+  victory: "🎉 You defeated {opponent}!"
+  defeat: "💀 {opponent} defeated you..."
+  draw: "🤝 It's a draw!"
+  reward: "+{coins} coins, +{xp} XP"
+
+# ---- FISHING ----
+fishing:
+  title: "🐟 **Fishing**"
+  cast: "🎣 Casting line..."
+  caught: "🐟 You caught a {item}!"
+  nothing: "🐟 Nothing biting..."
+  rare_catch: "⭐ Rare catch: {item}!"
+  trash: "🗑️ You caught some trash."
+
+# ---- MINING ----
+mining:
+  title: "⛏️ **Mining**"
+  pick: "⛏️ Swinging pickaxe..."
+  found: "⛏️ You mined {item}!"
+  nothing: "⛏️ No minerals found..."
+  rare_find: "💎 Rare find: {item}!"
+  cave_in: "🪨 Cave in! You took damage."
+
+# ---- BANK LEADERBOARD ----
+bank_leaderboard:
+  title: "🏦 **Bank Leaderboard**"
+  richest_bank: "💰 Richest Bank Accounts"
+  top_savers: "🏦 Top Savers"
+  most_loans: "📄 Most Loans"
+  your_rank: "Your rank: #{rank}"
+
+# ---- GROUP RANKING ----
+group_ranking:
+  title: "🏆 **Group Rankings**"
+  your_rank: "Your rank: #{rank}"
+  xp: "⭐ XP"
+  coins: "💰 Coins"
+  messages: "💬 Messages"
+  games: "🎮 Games"
+  no_activity: "No activity yet."
+  global_title: "🏆 **Global Group Rankings**"
+  global_xp: "⭐ Global XP Leaders"
+  global_coins: "💰 Global Coin Leaders"
+  global_messages: "💬 Global Message Leaders"
+
+# ---- STOCK MARKET ----
+stocks:
+  title: "📈 **Virtual Stock Market**"
+  market: "📊 Market Overview"
+  portfolio: "💼 Your Portfolio"
+  watchlist: "⭐ Watchlist"
+  history: "📜 Price History"
+  rankings: "🏆 Rankings"
+  search: "🔍 Search"
+  buy_success: "✅ Bought {shares} shares of {ticker} for ${total:,} (Tax: ${tax:,})"
+  buy_failed: "❌ Purchase failed: {reason}"
+  sell_success: "✅ Sold {shares} shares of {ticker} for ${net:,} (Profit: ${profit:,})"
+  sell_failed: "❌ Sale failed: {reason}"
+  no_position: "❌ You don't own any shares of {ticker}."
+  stop_loss_set: "✅ Stop loss set for {ticker} at {pct}%"
+  take_profit_set: "✅ Take profit set for {ticker} at {pct}%"
+  stop_loss_triggered: "🛑 Stop loss triggered for {ticker}! Auto-sold at {loss_pct:.1f}% loss."
+  take_profit_triggered: "🎯 Take profit triggered for {ticker}! Auto-sold at {gain_pct:.1f}% gain."
+  stock_not_found: "❌ Stock '{ticker}' not found."
+  watchlist_empty: "Empty. Add with /addwatch <ticker>"
+  watchlist_added: "✅ {ticker} added to watchlist."
+  watchlist_removed: "✅ {ticker} removed from watchlist."
+  price_history: "📜 **Price History — {ticker}**"
+  no_history: "❌ No price history found."
+  portfolio_empty: "📊 Your Portfolio is empty. Buy stocks with /buy <ticker> <shares>"
+  search_results: "🔍 **Search: {query}**"
+  no_results: "No stocks found."
+  market_crash: "💥 **MARKET CRASH** — All prices dropped!"
+  market_boom: "🐂 **MARKET BOOM** — All prices surged!"
+  event_triggered: "🎉 **Event: {title}**\n{desc}\nTarget: {ticker}\nImpact: {mod:+.1f}%"
+  top_gainers: "📊 **Top Gainers Today**"
+  top_losers: "📉 **Top Losers Today**"
+  stock_info: "📈 **{name}** ({ticker})"
+  stock_created: "✅ Stock {ticker} created."
+  stock_deleted: "✅ Stock {ticker} deleted."
+  stock_price_set: "✅ {ticker} price set to ${price:.2f}"
+  stock_volatility_set: "✅ {ticker} volatility set to {volatility}"
+  reset_confirm: "⚠️ This resets ALL stock prices!\nUse /resetstockmarket confirm"
+  reset_done: "✅ Stock market prices reset."
+  admin_usage: "Usage: /createstock <TICKER> <Name> <sector> <price> <shares>"
+  not_found: "❌ Stock '{ticker}' not found."
+  invalid_shares: "❌ Invalid share count."
+  insufficient_shares: "❌ Not enough shares available. Only {available} left."
+  tax_applied: "📋 Tax: {tax}% on all trades"
+  daily_reset: "📅 Daily market reset complete."
