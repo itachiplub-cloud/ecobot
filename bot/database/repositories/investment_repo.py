@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import random
 import string
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -33,7 +33,7 @@ class InvestmentRepository:
             return None
         await self.collection.update_one(
             {"user_id": user_id, "investment_id": investment_id},
-            {"$set": {"status": "completed", "returns": returns, "completed_at": datetime.utcnow()}},
+            {"$set": {"status": "completed", "returns": returns, "completed_at": datetime.now(timezone.utc)}},
         )
         inv.status = "completed"
         inv.returns = returns
@@ -42,7 +42,7 @@ class InvestmentRepository:
     async def cancel_investment(self, user_id: int, investment_id: str) -> bool:
         result = await self.collection.update_one(
             {"user_id": user_id, "investment_id": investment_id, "status": "active"},
-            {"$set": {"status": "cancelled", "completed_at": datetime.utcnow()}},
+            {"$set": {"status": "cancelled", "completed_at": datetime.now(timezone.utc)}},
         )
         return result.modified_count > 0
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -25,7 +25,7 @@ class DailyRepository:
 
     async def claim_daily(self, user_id: int) -> dict:
         daily = await self.get_or_create(user_id)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         if daily.last_daily:
             diff = (now - daily.last_daily).total_seconds()
             if diff < 82800:
@@ -57,7 +57,7 @@ class DailyRepository:
 
     async def claim_weekly(self, user_id: int) -> dict:
         daily = await self.get_or_create(user_id)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         if daily.last_weekly:
             diff = (now - daily.last_weekly).total_seconds()
             if diff < 604800:
@@ -75,7 +75,7 @@ class DailyRepository:
 
     async def claim_monthly(self, user_id: int) -> dict:
         daily = await self.get_or_create(user_id)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         if daily.last_monthly:
             diff = (now - daily.last_monthly).total_seconds()
             if diff < 2592000:
@@ -92,7 +92,7 @@ class DailyRepository:
 
     async def claim_yearly(self, user_id: int) -> dict:
         daily = await self.get_or_create(user_id)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         if daily.last_yearly:
             diff = (now - daily.last_yearly).total_seconds()
             if diff < 31536000:

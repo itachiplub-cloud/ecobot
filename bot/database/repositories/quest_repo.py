@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -71,7 +71,7 @@ class QuestRepository:
 
     async def cleanup_expired(self) -> int:
         result = await self.collection.delete_many({
-            "expires_at": {"$lt": datetime.utcnow()},
+            "expires_at": {"$lt": datetime.now(timezone.utc)},
             "completed": False,
         })
         return result.deleted_count

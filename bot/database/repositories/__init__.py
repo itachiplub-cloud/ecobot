@@ -21,6 +21,20 @@ from bot.database.repositories.settings_repo import SettingsRepository
 from bot.database.repositories.premium_repo import PremiumRepository
 from bot.database.repositories.log_repo import LogRepository
 from bot.database.repositories.statistics_repo import StatisticsRepository
+from bot.database.repositories.stock_repo import StockRepository
+from bot.database.repositories.stock_portfolio_repo import StockPortfolioRepository
+from bot.database.repositories.stock_transaction_repo import StockTransactionRepository
+from bot.database.repositories.stock_event_repo import StockMarketEventRepository
+from bot.database.repositories.stock_watchlist_repo import StockWatchlistRepository
+from bot.database.repositories.stock_price_history_repo import StockPriceHistoryRepository
+from bot.database.repositories.group_ranking_repo import GroupRankingRepository
+from bot.database.repositories.investment_repo import InvestmentRepository
+from bot.database.repositories.audit_log_repo import AuditLogRepository
+from bot.database.repositories.soft_delete_repo import SoftDeleteRepository
+from bot.database.repositories.game_config_repo import GameConfigRepository
+from bot.database.repositories.game_stats_repo import GameStatsRepository
+from bot.database.repositories.game_history_repo import GameHistoryRepository
+from bot.database.repositories.game_pass_repo import GamePassRepository
 
 __all__ = [
     "UserRepository",
@@ -46,4 +60,18 @@ __all__ = [
     "PremiumRepository",
     "LogRepository",
     "StatisticsRepository",
+    "StockRepository",
+    "StockPortfolioRepository",
+    "StockTransactionRepository",
+    "StockMarketEventRepository",
+    "StockWatchlistRepository",
+    "StockPriceHistoryRepository",
+    "GroupRankingRepository",
+    "InvestmentRepository",
+    "AuditLogRepository",
+    "SoftDeleteRepository",
+    "GameConfigRepository",
+    "GameStatsRepository",
+    "GameHistoryRepository",
+    "GamePassRepository",
 ]

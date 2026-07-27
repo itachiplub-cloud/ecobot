@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -104,6 +104,6 @@ class MarketRepository:
         return [AuctionModel.from_doc(d) for d in docs]
 
     async def cleanup_expired(self) -> int:
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         market_result = await self.market.delete_many({"expires_at": {"$lt": now}, "sold": False})
         return market_result.deleted_count

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -21,7 +21,7 @@ class StockRepository:
         return stock
 
     async def update_stock(self, ticker: str, **data) -> None:
-        data["updated_at"] = datetime.utcnow()
+        data["updated_at"] = datetime.now(timezone.utc)
         await self.collection.update_one({"ticker": ticker.upper()}, {"$set": data})
 
     async def delete_stock(self, ticker: str) -> bool:
@@ -99,5 +99,5 @@ class StockRepository:
             "opening_price": 100.0,
             "previous_close": 100.0,
             "daily_volume": 0,
-            "updated_at": datetime.utcnow(),
+            "updated_at": datetime.now(timezone.utc),
         }})

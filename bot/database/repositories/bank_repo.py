@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -28,7 +28,7 @@ class BankRepository:
         bank.balance += amount
         await self.collection.update_one(
             {"user_id": user_id},
-            {"$set": {"balance": bank.balance, "updated_at": datetime.utcnow()}},
+            {"$set": {"balance": bank.balance, "updated_at": datetime.now(timezone.utc)}},
         )
         return bank
 
@@ -39,7 +39,7 @@ class BankRepository:
         bank.balance -= amount
         await self.collection.update_one(
             {"user_id": user_id},
-            {"$set": {"balance": bank.balance, "updated_at": datetime.utcnow()}},
+            {"$set": {"balance": bank.balance, "updated_at": datetime.now(timezone.utc)}},
         )
         return bank
 
@@ -56,7 +56,7 @@ class BankRepository:
                 {"$set": {
                     "balance": bank.balance,
                     "total_interest_earned": bank.total_interest_earned,
-                    "last_interest": datetime.utcnow(),
+                    "last_interest": datetime.now(timezone.utc),
                 }},
             )
         return interest
@@ -66,8 +66,8 @@ class BankRepository:
         if bank.loan_amount > 0:
             return None
         bank.loan_amount = amount
-        bank.loan_taken_at = datetime.utcnow()
-        bank.loan_due = datetime.utcnow() + timedelta(days=days)
+        bank.loan_taken_at = datetime.now(timezone.utc)
+        bank.loan_due = datetime.now(timezone.utc) + timedelta(days=days)
         await self.collection.update_one(
             {"user_id": user_id},
             {"$set": {

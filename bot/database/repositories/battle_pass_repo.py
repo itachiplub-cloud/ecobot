@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -40,7 +40,7 @@ class BattlePassRepository:
                 "tier": bp.tier,
                 "xp_needed": bp.xp_needed,
                 "total_xp_earned": bp.total_xp_earned,
-                "updated_at": datetime.utcnow(),
+                "updated_at": datetime.now(timezone.utc),
             }},
         )
         return {"tiered_up": tiered_up, "new_tier": bp.tier}

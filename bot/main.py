@@ -2,7 +2,15 @@ from __future__ import annotations
 
 import asyncio
 import sys
+import platform
 from pathlib import Path
+
+if platform.system() != "Windows":
+    try:
+        import uvloop
+        asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    except ImportError:
+        pass
 
 from loguru import logger
 from pyrogram import Client, idle

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -30,7 +30,7 @@ class StockPortfolioRepository:
         return holding
 
     async def update_holding(self, user_id: int, ticker: str, **data) -> None:
-        data["last_updated"] = datetime.utcnow()
+        data["last_updated"] = datetime.now(timezone.utc)
         await self.collection.update_one(
             {"user_id": user_id, "ticker": ticker.upper()},
             {"$set": data},
@@ -39,7 +39,7 @@ class StockPortfolioRepository:
     async def remove_holding(self, user_id: int, ticker: str) -> bool:
         result = await self.collection.update_one(
             {"user_id": user_id, "ticker": ticker.upper()},
-            {"$set": {"shares": 0, "last_updated": datetime.utcnow()}},
+            {"$set": {"shares": 0, "last_updated": datetime.now(timezone.utc)}},
         )
         return result.modified_count > 0
 

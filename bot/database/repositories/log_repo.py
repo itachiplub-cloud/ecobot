@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -31,13 +31,13 @@ class LogRepository:
 
     async def cleanup_old(self, days: int = 30) -> int:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(days=days)
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         result = await self.collection.delete_many({"created_at": {"$lt": cutoff}})
         return result.deleted_count
 
     async def count_errors(self, since_hours: int = 24) -> int:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(hours=since_hours)
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=since_hours)
         return await self.collection.count_documents({
             "level": "ERROR",
             "created_at": {"$gte": cutoff},

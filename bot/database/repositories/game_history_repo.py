@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -30,7 +30,7 @@ class GameHistoryRepository:
             query["game_type"] = game_type
         if within_hours:
             from datetime import timedelta
-            cutoff = datetime.utcnow() - timedelta(hours=within_hours)
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=within_hours)
             query["created_at"] = {"$gte": cutoff}
         return await self.collection.count_documents(query)
 
@@ -41,7 +41,7 @@ class GameHistoryRepository:
 
     async def get_daily_volume(self, user_id: int) -> int:
         from datetime import timedelta
-        today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
         pipeline = [
             {"$match": {"user_id": user_id, "created_at": {"$gte": today}}},
             {"$group": {"_id": None, "total": {"$sum": "$bet_amount"}}},
@@ -51,6 +51,6 @@ class GameHistoryRepository:
 
     async def cleanup_old(self, days: int = 90) -> int:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(days=days)
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         result = await self.collection.delete_many({"created_at": {"$lt": cutoff}})
         return result.deleted_count

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -83,14 +83,14 @@ class PetRepository:
     async def feed_pet(self, user_id: int, pet_id: str, amount: int = 20) -> bool:
         result = await self.collection.update_one(
             {"user_id": user_id, "pet_id": pet_id},
-            {"$inc": {"hunger": amount}, "$set": {"last_fed": datetime.utcnow()}},
+            {"$inc": {"hunger": amount}, "$set": {"last_fed": datetime.now(timezone.utc)}},
         )
         return result.modified_count > 0
 
     async def play_pet(self, user_id: int, pet_id: str, amount: int = 20) -> bool:
         result = await self.collection.update_one(
             {"user_id": user_id, "pet_id": pet_id},
-            {"$inc": {"happiness": amount}, "$set": {"last_played": datetime.utcnow()}},
+            {"$inc": {"happiness": amount}, "$set": {"last_played": datetime.now(timezone.utc)}},
         )
         return result.modified_count > 0
 

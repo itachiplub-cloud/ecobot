@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -21,7 +21,7 @@ class EventRepository:
         return EventModel.from_doc(doc)
 
     async def get_active_events(self) -> list[EventModel]:
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         cursor = self.collection.find({
             "is_active": True,
             "$or": [

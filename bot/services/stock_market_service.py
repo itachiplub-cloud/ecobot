@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import random
-import math
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -133,7 +132,7 @@ class StockMarketService:
 
         holding.shares -= shares
         holding.total_sold += shares
-        holding.last_updated = datetime.utcnow()
+        holding.last_updated = datetime.now(timezone.utc)
 
         await self.portfolio_repo.upsert_holding(holding)
         await self.stock_repo.update_stock(ticker,
@@ -311,11 +310,11 @@ class StockMarketService:
             await self.stock_repo.update_stock(stock.ticker, current_price=round(new_price, 2))
             crashed.append({"ticker": stock.ticker, "drop": drop * 100})
         event = StockMarketEventModel(
-            event_id=f"crash_{datetime.utcnow().timestamp()}",
+            event_id=f"crash_{datetime.now(timezone.utc).timestamp()}",
             event_type="crash", title="💥 MARKET CRASH",
             description=f"Markets crashed! Severity: {severity*100:.0f}%",
             price_modifier=-severity, is_global=True, active=True,
-            expires_at=datetime.utcnow() + timedelta(hours=1),
+            expires_at=datetime.now(timezone.utc) + timedelta(hours=1),
         )
         await self.event_repo.create_event(event)
         return {"affected": len(crashed), "severity": severity}
@@ -329,11 +328,11 @@ class StockMarketService:
             await self.stock_repo.update_stock(stock.ticker, current_price=round(new_price, 2))
             boomed.append({"ticker": stock.ticker, "gain": gain * 100})
         event = StockMarketEventModel(
-            event_id=f"boom_{datetime.utcnow().timestamp()}",
+            event_id=f"boom_{datetime.now(timezone.utc).timestamp()}",
             event_type="boom", title="🐂 MARKET BOOM",
             description=f"Markets booming! Strength: {strength*100:.0f}%",
             price_modifier=strength, is_global=True, active=True,
-            expires_at=datetime.utcnow() + timedelta(hours=1),
+            expires_at=datetime.now(timezone.utc) + timedelta(hours=1),
         )
         await self.event_repo.create_event(event)
         return {"affected": len(boomed), "strength": strength}
@@ -349,7 +348,7 @@ class StockMarketService:
                 stock = random.choice(stocks)
 
         event = StockMarketEventModel(
-            event_id=f"evt_{datetime.utcnow().timestamp()}_{random.randint(1000,9999)}",
+            event_id=f"evt_{datetime.now(timezone.utc).timestamp()}_{random.randint(1000,9999)}",
             event_type=template["type"],
             ticker=stock.ticker if stock else None,
             title=template["title"],
@@ -357,7 +356,7 @@ class StockMarketService:
             price_modifier=template["mod"],
             is_global=template["global"],
             active=True,
-            expires_at=datetime.utcnow() + timedelta(minutes=random.randint(10, 60)),
+            expires_at=datetime.now(timezone.utc) + timedelta(minutes=random.randint(10, 60)),
         )
         await self.event_repo.create_event(event)
 

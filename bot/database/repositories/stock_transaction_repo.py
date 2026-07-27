@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -33,6 +33,6 @@ class StockTransactionRepository:
             "ticker": ticker.upper(),
             "action": action,
             "total_amount": amount,
-            "created_at": {"$gte": datetime.utcnow().timestamp() - 5},
+            "created_at": {"$gte": datetime.now(timezone.utc).timestamp() - 5},
         })
         return recent is not None

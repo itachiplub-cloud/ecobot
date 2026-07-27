@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -22,7 +22,7 @@ class StockMarketEventRepository:
             query["$or"] = [{"ticker": ticker.upper()}, {"is_global": True}]
         else:
             query["is_global"] = True
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         query["$or"] = [{"expires_at": None}, {"expires_at": {"$gt": now}}]
         cursor = self.collection.find(query)
         docs = await cursor.to_list(length=None)
@@ -30,7 +30,7 @@ class StockMarketEventRepository:
 
     async def expire_events(self) -> int:
         result = await self.collection.update_many(
-            {"active": True, "expires_at": {"$lte": datetime.utcnow()}},
+            {"active": True, "expires_at": {"$lte": datetime.now(timezone.utc)}},
             {"$set": {"active": False}},
         )
         return result.modified_count

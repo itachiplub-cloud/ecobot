@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -34,13 +34,13 @@ class AuditLogRepository:
 
     async def get_recent(self, hours: int = 24, limit: int = 100) -> list[AuditLogModel]:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(hours=hours)
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
         cursor = self.collection.find({"created_at": {"$gte": cutoff}}).sort("created_at", -1).limit(limit)
         docs = await cursor.to_list(length=limit)
         return [AuditLogModel.from_doc(d) for d in docs]
 
     async def cleanup_old(self, days: int = 90) -> int:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(days=days)
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         result = await self.collection.delete_many({"created_at": {"$lt": cutoff}})
         return result.deleted_count

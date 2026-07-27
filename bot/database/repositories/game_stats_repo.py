@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -25,7 +25,7 @@ class GameStatsRepository:
 
     async def record_game(self, user_id: int, game_type: str, won: bool, bet: int, payout: int) -> GameStatsModel:
         stats = await self.get_or_create(user_id)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         if stats.daily_reset and (now - stats.daily_reset).days >= 1:
             stats.daily_games = 0
             stats.daily_reset = now

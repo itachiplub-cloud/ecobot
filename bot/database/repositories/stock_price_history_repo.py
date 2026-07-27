@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
@@ -28,6 +28,6 @@ class StockPriceHistoryRepository:
 
     async def cleanup_old(self, days: int = 30) -> int:
         from datetime import timedelta
-        cutoff = datetime.utcnow() - timedelta(days=days)
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         result = await self.collection.delete_many({"recorded_at": {"$lt": cutoff}})
         return result.deleted_count

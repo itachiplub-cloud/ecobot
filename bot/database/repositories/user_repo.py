@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -28,7 +28,7 @@ class UserRepository:
         return user
 
     async def update_user(self, user_id: int, **update_data) -> None:
-        update_data["last_active"] = datetime.utcnow()
+        update_data["last_active"] = datetime.now(timezone.utc)
         await self.collection.update_one(
             {"user_id": user_id},
             {"$set": update_data},
@@ -38,7 +38,7 @@ class UserRepository:
         set_ops = {}
         for k, v in stats.items():
             set_ops[f"stats.{k}"] = v
-        set_ops["last_active"] = datetime.utcnow()
+        set_ops["last_active"] = datetime.now(timezone.utc)
         await self.collection.update_one(
             {"user_id": user_id},
             {"$set": set_ops},
@@ -61,7 +61,7 @@ class UserRepository:
                 "xp": user.xp,
                 "level": user.level,
                 "xp_needed": user.xp_needed,
-                "last_active": datetime.utcnow(),
+                "last_active": datetime.now(timezone.utc),
             }},
         )
         return {"leveled_up": leveled_up, "new_level": user.level}
@@ -77,7 +77,7 @@ class UserRepository:
     async def increment_field(self, user_id: int, field: str, amount: int = 1) -> None:
         await self.collection.update_one(
             {"user_id": user_id},
-            {"$inc": {field: amount}, "$set": {"last_active": datetime.utcnow()}},
+            {"$inc": {field: amount}, "$set": {"last_active": datetime.now(timezone.utc)}},
         )
 
     async def ban_user(self, user_id: int, reason: str = "") -> None:

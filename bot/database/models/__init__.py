@@ -21,6 +21,19 @@ from bot.database.models.settings import BotSettingsModel
 from bot.database.models.premium import PremiumModel
 from bot.database.models.log import LogModel
 from bot.database.models.statistics import StatisticsModel
+from bot.database.models.stock import StockModel
+from bot.database.models.stock_portfolio import StockPortfolioModel
+from bot.database.models.stock_transaction import StockTransactionModel
+from bot.database.models.stock_market_event import StockMarketEventModel
+from bot.database.models.stock_watchlist import StockWatchlistModel
+from bot.database.models.stock_price_history import StockPriceHistoryModel
+from bot.database.models.group_ranking import GroupRankingModel
+from bot.database.models.investment import InvestmentModel
+from bot.database.models.deleted_user import DeletedUserModel
+from bot.database.models.audit_log import AuditLogModel
+from bot.database.models.game_config import GameConfigModel
+from bot.database.models.game_stats import GameStatsModel
+from bot.database.models.game_history import GameHistoryModel
 
 __all__ = [
     "UserModel",
@@ -48,4 +61,17 @@ __all__ = [
     "PremiumModel",
     "LogModel",
     "StatisticsModel",
+    "StockModel",
+    "StockPortfolioModel",
+    "StockTransactionModel",
+    "StockMarketEventModel",
+    "StockWatchlistModel",
+    "StockPriceHistoryModel",
+    "GroupRankingModel",
+    "InvestmentModel",
+    "DeletedUserModel",
+    "AuditLogModel",
+    "GameConfigModel",
+    "GameStatsModel",
+    "GameHistoryModel",
 ]

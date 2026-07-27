@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -37,7 +37,7 @@ class GamePassRepository:
             {"user_id": user_id, "season": season},
             {"$set": {
                 "xp": gp.xp, "tier": gp.tier, "xp_needed": gp.xp_needed,
-                "unlocked_rewards": gp.unlocked_rewards, "updated_at": datetime.utcnow(),
+                "unlocked_rewards": gp.unlocked_rewards, "updated_at": datetime.now(timezone.utc),
             }},
         )
         return {"tiered_up": tiered_up, "new_tier": gp.tier}

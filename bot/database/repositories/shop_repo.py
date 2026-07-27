@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -23,7 +23,7 @@ class ShopRepository:
     async def get_shop_items(self, shop_type: str = "permanent") -> list[ShopModel]:
         query = {"shop_type": shop_type}
         if shop_type != "permanent":
-            query["expires_at"] = {"$gt": datetime.utcnow()}
+            query["expires_at"] = {"$gt": datetime.now(timezone.utc)}
         cursor = self.collection.find(query)
         docs = await cursor.to_list(length=None)
         return [ShopModel.from_doc(d) for d in docs]

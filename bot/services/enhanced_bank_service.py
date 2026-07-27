@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
+
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
 from bot.database.repositories.investment_repo import InvestmentRepository
@@ -44,7 +46,6 @@ class EnhancedBankService:
         if not eco or eco.wallet < amount:
             return {"success": False, "reason": "insufficient_funds"}
         await self.econ_repo.remove_coins(user_id, amount)
-        from datetime import datetime, timedelta
         inv = InvestmentModel(
             investment_id=self.invest_repo.generate_investment_id(),
             user_id=user_id,
@@ -52,7 +53,7 @@ class EnhancedBankService:
             investment_type=investment_type,
             interest_rate=inv_config["rate"],
             risk_level=inv_config["risk"],
-            matures_at=datetime.utcnow() + timedelta(days=inv_config["lock_days"]),
+            matures_at=datetime.now(timezone.utc) + timedelta(days=inv_config["lock_days"]),
         )
         await self.invest_repo.create_investment(inv)
         return {"success": True, "investment_id": inv.investment_id, "rate": inv_config["rate"], "matures": inv.matures_at}
@@ -61,8 +62,7 @@ class EnhancedBankService:
         inv = await self.invest_repo.get_investment(user_id, investment_id)
         if not inv:
             return {"success": False, "reason": "not_found"}
-        from datetime import datetime
-        if inv.matures_at and inv.matures_at > datetime.utcnow():
+        if inv.matures_at and inv.matures_at > datetime.now(timezone.utc):
             return {"success": False, "reason": "not_matured", "matures": inv.matures_at}
         returns = int(inv.amount * (1 + inv.interest_rate))
         await self.invest_repo.complete_investment(user_id, investment_id, returns)

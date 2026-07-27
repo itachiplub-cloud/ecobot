@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -30,7 +30,7 @@ class GroupRankingRepository:
                     "messages_sent": messages,
                     "games_played": games,
                 },
-                "$set": {"last_active": datetime.utcnow()},
+                "$set": {"last_active": datetime.now(timezone.utc)},
             },
             upsert=True,
         )
@@ -73,7 +73,7 @@ class GroupRankingRepository:
     async def update_level(self, user_id: int, group_id: int, level: int) -> None:
         await self.collection.update_one(
             {"user_id": user_id, "group_id": group_id},
-            {"$set": {"level": level, "last_active": datetime.utcnow()}},
+            {"$set": {"level": level, "last_active": datetime.now(timezone.utc)}},
             upsert=True,
         )
 

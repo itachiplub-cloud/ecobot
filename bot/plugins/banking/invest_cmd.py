@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import random
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -60,7 +60,7 @@ def register(app: Client):
 
         config = INVESTMENT_TYPES[inv_type]
         investment_id = "INV-" + "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=8))
-        matures_at = datetime.utcnow() + timedelta(days=config["lock_days"]) if config["lock_days"] > 0 else None
+        matures_at = datetime.now(timezone.utc) + timedelta(days=config["lock_days"]) if config["lock_days"] > 0 else None
 
         inv_model = InvestmentModel(
             user_id=message.from_user.id,
@@ -70,7 +70,7 @@ def register(app: Client):
             interest_rate=config["interest_rate"],
             risk_level=config["risk_level"],
             status="active",
-            started_at=datetime.utcnow(),
+            started_at=datetime.now(timezone.utc),
             matures_at=matures_at,
         )
 
@@ -103,11 +103,11 @@ def register(app: Client):
         text = "📋 **Your Investments**\n\n"
         for inv in investments:
             config = INVESTMENT_TYPES.get(inv.investment_type, {})
-            locked = inv.matures_at and inv.matures_at > datetime.utcnow()
+            locked = inv.matures_at and inv.matures_at > datetime.now(timezone.utc)
             lock_str = f"🔒 Locked" if locked else "✅ Unlocked"
             days_left = ""
             if inv.matures_at and locked:
-                delta = inv.matures_at - datetime.utcnow()
+                delta = inv.matures_at - datetime.now(timezone.utc)
                 days_left = f" ({delta.days}d {delta.seconds // 3600}h)"
             text += (
                 f"🆔 `{inv.investment_id}`\n"
@@ -137,12 +137,12 @@ def register(app: Client):
             await message.reply_text("❌ Investment not found.")
             return
 
-        if inv.matures_at and inv.matures_at > datetime.utcnow():
-            delta = inv.matures_at - datetime.utcnow()
+        if inv.matures_at and inv.matures_at > datetime.now(timezone.utc):
+            delta = inv.matures_at - datetime.now(timezone.utc)
             await message.reply_text(f"❌ Still locked. Unlocks in {delta.days}d {delta.seconds // 3600}h.")
             return
 
-        days_held = (datetime.utcnow() - inv.started_at).days
+        days_held = (datetime.now(timezone.utc) - inv.started_at).days
         interest = int(inv.amount * (inv.interest_rate / 100) * max(days_held, 1))
         total_return = inv.amount + interest
 

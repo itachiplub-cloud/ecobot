@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -34,7 +34,7 @@ class PremiumRepository:
         if not doc:
             return False
         prem = PremiumModel.from_doc(doc)
-        if prem.expires_at and prem.expires_at < datetime.utcnow():
+        if prem.expires_at and prem.expires_at < datetime.now(timezone.utc):
             await self.remove_premium(user_id)
             return False
         return True
@@ -46,6 +46,6 @@ class PremiumRepository:
 
     async def cleanup_expired(self) -> int:
         result = await self.collection.delete_many({
-            "expires_at": {"$lt": datetime.utcnow(), "$ne": None},
+            "expires_at": {"$lt": datetime.now(timezone.utc), "$ne": None},
         })
         return result.deleted_count

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -15,14 +15,14 @@ class LeaderboardRepository:
     async def update_score(self, user_id: int, category: str, score: int) -> None:
         await self.collection.update_one(
             {"user_id": user_id, "category": category},
-            {"$set": {"score": score, "updated_at": datetime.utcnow()}},
+            {"$set": {"score": score, "updated_at": datetime.now(timezone.utc)}},
             upsert=True,
         )
 
     async def increment_score(self, user_id: int, category: str, amount: int) -> None:
         await self.collection.update_one(
             {"user_id": user_id, "category": category},
-            {"$inc": {"score": amount}, "$set": {"updated_at": datetime.utcnow()}},
+            {"$inc": {"score": amount}, "$set": {"updated_at": datetime.now(timezone.utc)}},
             upsert=True,
         )
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -23,7 +23,7 @@ class AchievementRepository:
         if existing:
             await self.collection.update_one(
                 {"user_id": user_id, "achievement_id": achievement_id},
-                {"$set": {"progress": max_progress, "completed": True, "completed_at": datetime.utcnow()}},
+                {"$set": {"progress": max_progress, "completed": True, "completed_at": datetime.now(timezone.utc)}},
             )
         else:
             ach = AchievementModel(
@@ -32,7 +32,7 @@ class AchievementRepository:
                 progress=max_progress,
                 max_progress=max_progress,
                 completed=True,
-                completed_at=datetime.utcnow(),
+                completed_at=datetime.now(timezone.utc),
             )
             await self.collection.insert_one(ach.to_dict())
         return True
@@ -47,7 +47,7 @@ class AchievementRepository:
             set_data = {"progress": new_progress}
             if newly_unlocked:
                 set_data["completed"] = True
-                set_data["completed_at"] = datetime.utcnow()
+                set_data["completed_at"] = datetime.now(timezone.utc)
             await self.collection.update_one(
                 {"user_id": user_id, "achievement_id": achievement_id},
                 {"$set": set_data},

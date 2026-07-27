@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+from config import settings
 from bot.core import loc
 from bot.keyboards.inline import InlineKeyboards
 from bot.utils.helpers import format_number

@@ -24,13 +24,11 @@ class BankService:
         eco = await self.econ_repo.get_economy(user_id)
         if not eco or eco.wallet < amount:
             return {"success": False, "reason": "insufficient_funds"}
-        await self.econ_repo.withdraw_from_wallet(user_id, amount) if hasattr(self.econ_repo, 'withdraw_from_wallet') else None
-        eco.wallet -= amount
-        from bot.database import get_db
-        db = get_db()
-        await db.economy.update_one({"user_id": user_id}, {"$set": {"wallet": eco.wallet}})
+        eco = await self.econ_repo.remove_coins(user_id, amount)
+        if eco is None:
+            return {"success": False, "reason": "insufficient_funds"}
         await self.bank_repo.deposit(user_id, amount)
-        return {"success": True, "balance": eco.wallet + amount, "bank_balance": eco.bank + amount}
+        return {"success": True, "balance": eco.wallet, "bank_balance": eco.bank}
 
     async def withdraw(self, user_id: int, amount: int) -> dict:
         bank = await self.bank_repo.get_bank(user_id)

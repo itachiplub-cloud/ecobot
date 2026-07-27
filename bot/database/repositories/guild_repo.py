@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -26,7 +26,7 @@ class GuildRepository:
         return GuildModel.from_doc(doc)
 
     async def update_guild(self, guild_id: int, **update_data) -> None:
-        update_data["updated_at"] = datetime.utcnow()
+        update_data["updated_at"] = datetime.now(timezone.utc)
         await self.guilds.update_one(
             {"guild_id": guild_id},
             {"$set": update_data},

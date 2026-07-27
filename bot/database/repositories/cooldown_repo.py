@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
@@ -13,10 +13,10 @@ class CooldownRepository:
 
     async def set_cooldown(self, user_id: int, action: str, seconds: int) -> None:
         from datetime import timedelta
-        expires = datetime.utcnow() + timedelta(seconds=seconds)
+        expires = datetime.now(timezone.utc) + timedelta(seconds=seconds)
         await self.collection.update_one(
             {"user_id": user_id, "action": action},
-            {"$set": {"expires_at": expires, "created_at": datetime.utcnow()}},
+            {"$set": {"expires_at": expires, "created_at": datetime.now(timezone.utc)}},
             upsert=True,
         )
 
@@ -30,7 +30,7 @@ class CooldownRepository:
         doc = await self.collection.find_one({"user_id": user_id, "action": action})
         if not doc:
             return False, 0
-        remaining = (doc["expires_at"] - datetime.utcnow()).total_seconds()
+        remaining = (doc["expires_at"] - datetime.now(timezone.utc)).total_seconds()
         if remaining <= 0:
             await self.collection.delete_one({"user_id": user_id, "action": action})
             return False, 0
@@ -43,5 +43,5 @@ class CooldownRepository:
         await self.collection.delete_many({"user_id": user_id})
 
     async def cleanup_expired(self) -> int:
-        result = await self.collection.delete_many({"expires_at": {"$lt": datetime.utcnow()}})
+        result = await self.collection.delete_many({"expires_at": {"$lt": datetime.now(timezone.utc)}})
         return result.deleted_count

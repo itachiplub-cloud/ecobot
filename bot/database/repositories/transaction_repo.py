@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -33,7 +33,7 @@ class TransactionRepository:
         return result[0]["total"] if result else 0
 
     async def check_duplicate(self, user_id: int, tx_type: str, amount: int, within_seconds: int = 5) -> bool:
-        cutoff = datetime.utcnow()
+        cutoff = datetime.now(timezone.utc)
         from datetime import timedelta
         cutoff -= timedelta(seconds=within_seconds)
         count = await self.collection.count_documents({

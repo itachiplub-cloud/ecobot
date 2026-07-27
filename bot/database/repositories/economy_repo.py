@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -40,7 +40,7 @@ class EconomyRepository:
                 "wallet": eco.wallet,
                 "total_earned": eco.total_earned,
                 "total_spent": eco.total_spent,
-                "updated_at": datetime.utcnow(),
+                "updated_at": datetime.now(timezone.utc),
             }},
         )
         return eco
@@ -56,7 +56,7 @@ class EconomyRepository:
             {"$set": {
                 "wallet": eco.wallet,
                 "total_spent": eco.total_spent,
-                "updated_at": datetime.utcnow(),
+                "updated_at": datetime.now(timezone.utc),
             }},
         )
         return eco
@@ -72,11 +72,11 @@ class EconomyRepository:
         receiver.total_earned += amount
         await self.collection.update_one(
             {"user_id": sender_id},
-            {"$set": {"wallet": sender.wallet, "total_spent": sender.total_spent, "updated_at": datetime.utcnow()}},
+            {"$set": {"wallet": sender.wallet, "total_spent": sender.total_spent, "updated_at": datetime.now(timezone.utc)}},
         )
         await self.collection.update_one(
             {"user_id": receiver_id},
-            {"$set": {"wallet": receiver.wallet, "total_earned": receiver.total_earned, "updated_at": datetime.utcnow()}},
+            {"$set": {"wallet": receiver.wallet, "total_earned": receiver.total_earned, "updated_at": datetime.now(timezone.utc)}},
         )
         return sender, receiver
 
@@ -93,7 +93,7 @@ class EconomyRepository:
                 "wallet": eco.wallet,
                 "bank": eco.bank,
                 "total_deposited": eco.total_deposited,
-                "updated_at": datetime.utcnow(),
+                "updated_at": datetime.now(timezone.utc),
             }},
         )
         return eco
@@ -111,7 +111,7 @@ class EconomyRepository:
                 "wallet": eco.wallet,
                 "bank": eco.bank,
                 "total_withdrawn": eco.total_withdrawn,
-                "updated_at": datetime.utcnow(),
+                "updated_at": datetime.now(timezone.utc),
             }},
         )
         return eco
@@ -136,13 +136,13 @@ class EconomyRepository:
     async def set_balance(self, user_id: int, wallet: int = 0, bank: int = 0) -> None:
         await self.collection.update_one(
             {"user_id": user_id},
-            {"$set": {"wallet": wallet, "bank": bank, "updated_at": datetime.utcnow()}},
+            {"$set": {"wallet": wallet, "bank": bank, "updated_at": datetime.now(timezone.utc)}},
         )
 
     async def reset_all(self) -> None:
         await self.collection.update_many(
             {},
-            {"$set": {"wallet": 0, "bank": 0, "updated_at": datetime.utcnow()}},
+            {"$set": {"wallet": 0, "bank": 0, "updated_at": datetime.now(timezone.utc)}},
         )
 
     async def global_add(self, amount: int) -> None:
